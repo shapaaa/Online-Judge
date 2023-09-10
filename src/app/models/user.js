@@ -17,6 +17,7 @@ const UserSchema = mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
+	createdat: { type: Date, default: Date.now() },
 });
 const User = mongoose.models.user || mongoose.model('user', UserSchema);
 export default User;
