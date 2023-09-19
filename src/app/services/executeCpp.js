@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { exec } from 'child_process';
-const executeCpp = async (filepath, input) => {
+const executeCpp = async (filepath, inputs) => {
 	const outputPath = path.join(process.cwd(), '/src/app/outputs');
 	//create output folder is doesn't exist
 	if (!fs.existsSync(outputPath)) {
@@ -21,18 +21,27 @@ const executeCpp = async (filepath, input) => {
 			resolve(stdout);
 		});
 	});
-	const child = exec(`cd ${outputPath} && .\/${jobId}.out`);
-	child.stdin.end(input);
-	return await new Promise((resolve, reject) => {
-		child.stdout.on('data', (data) => {
-			resolve(data);
-		});
-		child.stderr.on('data', (x) => {
-			reject(error);
-		});
-		child.on('exit', (code) => {
-			resolve(code);
-		});
-	});
+	try {
+		const outputs = await Promise.all(
+			inputs.map(async (input) => {
+				const child = exec(`cd ${outputPath} && .\/${jobId}.out`);
+				child.stdin.end(input);
+				return new Promise((resolve, reject) => {
+					child.stdout.on('data', (data) => {
+						resolve(data);
+					});
+					child.stderr.on('data', (x) => {
+						reject(error);
+					});
+					child.on('exit', (code) => {
+						resolve(code);
+					});
+				});
+			})
+		);
+		return outputs;
+	} catch (error) {
+		throw new Error(error.message);
+	}
 };
 export default executeCpp;
