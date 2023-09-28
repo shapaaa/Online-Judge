@@ -1,6 +1,8 @@
 import Link from "next/link";
+import getAuthenticatedUser from "../lib/getAuthenticatedUser";
 
-const Header = () => {
+const Header = async () => {
+  const result = await getAuthenticatedUser();
   return (
     <header className="flex h-20 items-center justify-evenly bg-slate-300">
       <div className="grow">
@@ -8,15 +10,20 @@ const Header = () => {
       </div>
       <nav className="grow">
         <ul className="flex justify-center gap-5">
-          <li>
-            <Link href="/login">Sign In</Link>
-          </li>
-          <li>
-            <Link href="/register">Register</Link>
-          </li>
-          <li>
-            <Link href="/profile">Profile</Link>
-          </li>
+          {result.ok ? (
+            <li>
+              <Link href="/profile">Hey👋, {result.user.name}</Link>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link href="/login">Sign In</Link>
+              </li>
+              <li>
+                <Link href="/register">Register</Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
