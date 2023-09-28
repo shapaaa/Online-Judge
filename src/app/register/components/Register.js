@@ -15,6 +15,7 @@ const Register = () => {
     try {
       const newUser = { name: username, email, password, confirmPassword };
       const result = await axios.post("/api/signup", newUser);
+      refresh();
       push("/");
     } catch (error) {
       console.log(error);

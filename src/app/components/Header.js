@@ -1,5 +1,6 @@
 import Link from "next/link";
 import getAuthenticatedUser from "../lib/getAuthenticatedUser";
+import Logout from "./Logout";
 
 const Header = async () => {
   const result = await getAuthenticatedUser();
@@ -11,9 +12,14 @@ const Header = async () => {
       <nav className="grow">
         <ul className="flex justify-center gap-5">
           {result.ok ? (
-            <li>
-              <Link href="/profile">Hey👋, {result.user.name}</Link>
-            </li>
+            <>
+              <li>
+                <Link href="/profile">Hello, {result.user.name}</Link>
+              </li>
+              <li>
+                <Logout />
+              </li>
+            </>
           ) : (
             <>
               <li>

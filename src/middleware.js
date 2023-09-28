@@ -7,8 +7,10 @@ export const config = {
 export async function middleware(request) {
   const jwt = request.cookies?.get("jwt");
   const { pathname } = request.nextUrl;
-
-  if ((pathname == "/api/login" || pathname == "/api/register") && !jwt) {
+  if (
+    ((pathname == "/api/login" || pathname == "/api/register") && !jwt) ||
+    pathname === "/api/logout"
+  ) {
     return NextResponse.next();
   }
   try {

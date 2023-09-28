@@ -7,7 +7,7 @@ import { useState } from "react";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { push } = useRouter();
+  const { push, refresh } = useRouter();
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -17,6 +17,7 @@ const Login = () => {
   const handleClick = async () => {
     try {
       const result = await axios.post("/api/login", { email, password });
+      refresh();
       push("/");
     } catch (error) {
       console.log(error);
