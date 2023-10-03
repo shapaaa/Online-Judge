@@ -4,8 +4,8 @@ const DropDown = ({ difficulty, handleDifficulty }) => {
   return (
     <>
       <label
-        for="difficulty"
-        class="mb-2 block text-sm font-medium text-gray-900 "
+        htmlFor="difficulty"
+        className="mb-2 block text-sm font-medium text-gray-900 "
       >
         Select difficulty level
       </label>
@@ -13,7 +13,7 @@ const DropDown = ({ difficulty, handleDifficulty }) => {
         id="difficulty"
         value={difficulty}
         onChange={handleDifficulty}
-        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
+        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
       >
         <option selected>Choose difficulty</option>
         <option value="Easy">Easy</option>
