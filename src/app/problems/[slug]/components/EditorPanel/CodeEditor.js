@@ -6,13 +6,25 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css"; //Example style, you can use another
 import { EditorContext } from "@/ContextProviders/EditorProvider";
 const intitalCodes = {
-  "C++": "",
-  Java: "",
-  Python: "",
+  "C++": `#include <iostream>
+    using namespace std;
+  
+  int main() 
+  {
+      cout << "Hello, World!";
+      return 0;
+  }`,
+  Java: `import java.util.*;
+
+  public class Main {
+      public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+  }`,
+  Python: `print("Hello, World!")`,
 };
 const CodeEditor = ({ questionId }) => {
   const { language, code, setCode } = useContext(EditorContext);
-
   useEffect(() => {
     if (!localStorage.getItem(questionId)) setCode(intitalCodes[language]);
   }, [language]);
@@ -32,7 +44,8 @@ const CodeEditor = ({ questionId }) => {
       value={code}
       onValueChange={handleChange}
       highlight={(code) => highlight(code, languages.js)}
-      padding={20}
+      padding={10}
+      className="h-[500px] w-[800px] rounded-md border"
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
         fontSize: 16,

@@ -7,9 +7,11 @@ import EditorProvider from "@/ContextProviders/EditorProvider";
 const EditorPanel = ({ questionId }) => {
   return (
     <EditorProvider>
-      <DropDown />
-      <CodeEditor />
-      <IOPanel questionId={questionId} />
+      <div className="flex flex-col gap-y-5">
+        <DropDown />
+        <CodeEditor questionId={questionId} />
+        <IOPanel questionId={questionId} />
+      </div>
     </EditorProvider>
   );
 };
