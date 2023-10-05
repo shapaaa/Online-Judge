@@ -37,7 +37,7 @@ const ProblemsTable = ({ data }) => {
   return (
     <div className="  flex justify-center  rounded">
       <table className="w-9/12 text-left text-sm text-gray-500">
-        <thead className="bg-slate-200 text-xs uppercase text-gray-700">
+        <thead className="border-b bg-slate-50 text-xs uppercase text-gray-700">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -55,10 +55,7 @@ const ProblemsTable = ({ data }) => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr
-              className="border-b odd:bg-white even:bg-slate-100"
-              key={row.id}
-            >
+            <tr className=" odd:bg-white even:bg-slate-100" key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td
                   className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"

@@ -68,7 +68,7 @@ const NewProblemForm = () => {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       ) : (
         <div className="flex flex-col gap-y-[20px] p-[20px]">
@@ -77,15 +77,18 @@ const NewProblemForm = () => {
               className="mb-4  rounded-lg bg-green-50 p-4 text-sm text-green-800 dark:bg-gray-800 dark:text-green-400"
               role="alert"
             >
-              <span class="font-medium"> Question created successfully 🎉</span>
+              <span className="font-medium">
+                {" "}
+                Question created successfully 🎉
+              </span>
             </div>
           )}
           {!!error && (
             <div
-              class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+              className="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
               role="alert"
             >
-              <span class="font-medium">Error</span> {error}
+              <span className="font-medium">Error</span> {error}
             </div>
           )}
           <input

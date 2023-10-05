@@ -41,8 +41,8 @@ const page = async ({ params: { slug } }) => {
   };
   return (
     <div className="mx-[20px] flex gap-[10px] ">
-      <article className="flex w-5/12 flex-col gap-y-[10px]">
-        <h1 className="text-lg font-bold">{title}</h1>
+      <article className="prose flex w-5/12 flex-col gap-y-[10px]">
+        <h1 className="mb-0 text-lg font-bold">{title}</h1>
         <div className={` font-semibold ${colors[difficulty]}`}>
           {difficulty}
         </div>
@@ -53,7 +53,7 @@ const page = async ({ params: { slug } }) => {
           My Submissions
         </Link>
         <div>
-          <ReactMarkdown>{text}</ReactMarkdown>
+          <ReactMarkdown>{description}</ReactMarkdown>
         </div>
       </article>
       <EditorPanel questionId={title} />

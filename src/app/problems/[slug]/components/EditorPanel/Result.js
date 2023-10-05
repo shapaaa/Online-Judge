@@ -1,6 +1,6 @@
 const Result = ({ output, verdict, loading }) => {
   return (
-    <div className="flex h-[80px] w-full items-center justify-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
+    <div className="flex h-[80px] w-full items-center justify-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 ">
       {!!output ? (
         output
       ) : !!verdict ? (
@@ -9,7 +9,7 @@ const Result = ({ output, verdict, loading }) => {
         <div role="status">
           <svg
             aria-hidden="true"
-            class="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+            class="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 "
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
