@@ -8,7 +8,7 @@ import Link from "next/link";
 const EditorPanel = ({ questionId, result }) => {
   return (
     <EditorProvider>
-      <div className="flex flex-col gap-y-5">
+      <div className="flex flex-col gap-y-5 rounded bg-white p-[20px]">
         <DropDown />
         <CodeEditor questionId={questionId} />
         <>
@@ -17,7 +17,7 @@ const EditorPanel = ({ questionId, result }) => {
               ""
             ) : (
               <div
-                class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+                class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 "
                 role="alert"
               >
                 You need to verify your account to Run/Submit
@@ -25,7 +25,7 @@ const EditorPanel = ({ questionId, result }) => {
             )
           ) : (
             <div
-              class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+              class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 "
               role="alert"
             >
               You need to{" "}

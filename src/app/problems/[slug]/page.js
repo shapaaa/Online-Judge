@@ -42,8 +42,8 @@ const page = async ({ params: { slug } }) => {
   };
   const result = await getAuthenticatedUser();
   return (
-    <div className="mx-[20px] flex gap-[10px] ">
-      <article className="prose flex w-5/12 flex-col gap-y-[10px]">
+    <div className=" mb-[20px] flex h-[940px] gap-[10px] bg-slate-100 p-[10px] ">
+      <article className="prose flex w-5/12 flex-col gap-y-[10px] overflow-y-scroll rounded bg-white p-[20px]">
         <h1 className="mb-0 text-lg font-bold">{title}</h1>
         <div className={` font-semibold ${colors[difficulty]}`}>
           {difficulty}

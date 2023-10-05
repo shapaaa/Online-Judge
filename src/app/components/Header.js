@@ -5,7 +5,7 @@ import Logout from "./Logout";
 const Header = async () => {
   const result = await getAuthenticatedUser();
   return (
-    <header className="mb-[30px] flex h-20 items-center justify-evenly bg-slate-300">
+    <header className=" flex h-[60px] items-center justify-evenly border-b ">
       <div>
         <Link href="/">
           <h1 className="text-center font-medium">Online Judge</h1>
