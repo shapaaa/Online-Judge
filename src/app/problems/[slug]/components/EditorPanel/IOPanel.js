@@ -4,7 +4,7 @@ import { EditorContext } from "@/ContextProviders/EditorProvider";
 import Result from "./Result";
 import axios from "axios";
 
-const IOPanel = ({ questionId }) => {
+const IOPanel = ({ disable, questionId }) => {
   const [activeId, setActiveId] = useState(0);
   const [output, setOutput] = useState("");
   const [verdict, setVerdict] = useState("");
@@ -28,6 +28,7 @@ const IOPanel = ({ questionId }) => {
       });
       setOutput(result[0]);
     } catch (error) {
+      console.log(error);
       setOutput(error.message);
     }
     setLoading(false);
@@ -78,16 +79,18 @@ const IOPanel = ({ questionId }) => {
       {panels[activeId]}
       <div>
         <button
+          disabled={disable}
           onClick={handleRun}
           type="button"
-          class="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-25 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Run
         </button>
         <button
+          disabled={disable}
           onClick={handleSubmit}
           type="button"
-          class="mb-2 mr-2 rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          class="mb-2 mr-2 rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 disabled:opacity-25 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
         >
           Submit
         </button>

@@ -40,17 +40,19 @@ const CodeEditor = ({ questionId }) => {
   };
 
   return (
-    <Editor
-      value={code}
-      onValueChange={handleChange}
-      highlight={(code) => highlight(code, languages.js)}
-      padding={10}
-      className="h-[500px] w-[800px] rounded-md border"
-      style={{
-        fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 16,
-      }}
-    />
+    <div className="h-[500px] w-[800px] overflow-y-scroll rounded-md border">
+      <Editor
+        value={code}
+        onValueChange={handleChange}
+        highlight={(code) => highlight(code, languages.js)}
+        padding={10}
+        className="min-h-[500px] "
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", monospace',
+          fontSize: 16,
+        }}
+      />
+    </div>
   );
 };
 

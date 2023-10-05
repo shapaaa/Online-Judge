@@ -5,13 +5,13 @@ import Logout from "./Logout";
 const Header = async () => {
   const result = await getAuthenticatedUser();
   return (
-    <header className="mb-[30px] flex h-[50px] items-center justify-evenly border-b text-blue-600 ">
-      <div className="grow">
+    <header className="mb-[30px] flex h-20 items-center justify-evenly bg-slate-300">
+      <div>
         <Link href="/">
           <h1 className="text-center font-medium">Online Judge</h1>
         </Link>
       </div>
-      <nav className="grow">
+      <nav>
         <ul className="flex justify-center gap-5">
           {result.ok ? (
             <>

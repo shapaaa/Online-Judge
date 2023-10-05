@@ -2,6 +2,7 @@ import { getQuestions } from "@/app/lib/getQuestions";
 import EditorPanel from "./components/EditorPanel";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import getAuthenticatedUser from "@/app/lib/getAuthenticatedUser";
 const text = `Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
 
 The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
@@ -39,6 +40,7 @@ const page = async ({ params: { slug } }) => {
     Medium: "text-yellow-600",
     Easy: "text-green-600",
   };
+  const result = await getAuthenticatedUser();
   return (
     <div className="mx-[20px] flex gap-[10px] ">
       <article className="prose flex w-5/12 flex-col gap-y-[10px]">
@@ -48,7 +50,7 @@ const page = async ({ params: { slug } }) => {
         </div>
         <Link
           className="mb-2 mr-2 w-fit rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300"
-          href="/submissions"
+          href={`/problems/${slug}/submissions`}
         >
           My Submissions
         </Link>
@@ -56,7 +58,7 @@ const page = async ({ params: { slug } }) => {
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
       </article>
-      <EditorPanel questionId={title} />
+      <EditorPanel result={result} questionId={title} />
     </div>
   );
 };
