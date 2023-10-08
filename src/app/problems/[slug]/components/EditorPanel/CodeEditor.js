@@ -40,13 +40,13 @@ const CodeEditor = ({ questionId }) => {
   };
 
   return (
-    <div className="h-[500px] w-[800px] overflow-y-scroll rounded-md border">
+    <div className="h-[600px] overflow-y-scroll rounded-md border">
       <Editor
         value={code}
         onValueChange={handleChange}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
-        className="min-h-[500px] "
+        className="min-h-[600px] "
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',
           fontSize: 16,
