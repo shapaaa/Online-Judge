@@ -1,13 +1,13 @@
 import DBConnection from "@/app/lib/db";
-import TestCase from "@/app/models/testcases";
+import TestCases from "@/app/models/testcases";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
     await DBConnection();
-    const testCase = await request.json();
-    const result = await TestCase.create(testCase);
-    return NextResponse.json("TestCase added Successfully 🎉");
+    const testCases = await request.json();
+    const result = await TestCases.create(testCases);
+    return NextResponse.json("TestCases added Successfully 🎉");
   } catch (error) {
     return NextResponse.json(error.message);
   }

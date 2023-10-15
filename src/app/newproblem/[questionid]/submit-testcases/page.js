@@ -4,25 +4,28 @@ import axios from "axios";
 import { useContext } from "react";
 import { useState } from "react";
 
-const SubmitTestCases = () => {
-  const [testCases, setTestCases] = useState("");
+const SubmitTestCases = ({ params }) => {
+  const { questionid } = params;
+  const [testCasesInput, setTestCasesInput] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { description, difficulty, title } = useContext(ProblemContext);
   const handleChange = (e) => {
-    setTestCases(e.target.value);
+    setTestCasesInput(e.target.value);
   };
   const handleSubmit = async () => {
-    const newProblem = {
-      description,
-      title,
-      difficulty,
-      testcases: testCases.split("\n\n"),
+    const testCases = testCasesInput.split("\n\n");
+    const testcases = testCases.map((testCase) => {
+      const testcase = testCase.replace("Input\n", "").split("Output\n");
+      return { input: testcase[0], expectedOutput: testcase[1] };
+    });
+    const payload = {
+      questionId: questionid,
+      testcases,
     };
     try {
       setLoading(true);
-      const result = await axios.post("/api/questions", newProblem);
+      const result = await axios.post("/api/testcases", payload);
       setLoading(false);
       setSuccess(true);
       setTimeout(() => {
@@ -45,7 +48,7 @@ const SubmitTestCases = () => {
         Add TestCases
       </label>
       <textarea
-        value={testCases}
+        value={testCasesInput}
         onChange={handleChange}
         id="message"
         rows="4"

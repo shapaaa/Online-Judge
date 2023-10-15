@@ -18,6 +18,8 @@ const NewProblemForm = (props) => {
     setTitle,
   } = useContext(ProblemContext);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const handleEditorChange = ({ html, text }) => {
@@ -36,22 +38,29 @@ const NewProblemForm = (props) => {
         setError("");
       }, 2000);
     } else {
-      // try {
-      //   setLoading(true);
-      //   const result = await axios.post("/api/questions", newProblem);
-      //   setLoading(false);
-      //   setSuccess(true);
-      //   setTimeout(() => {
-      //     setSuccess(false);
-      //   }, 2000);
-      // } catch (error) {
-      //   setLoading(false);
-      //   setError(error.message);
-      //   setTimeout(() => {
-      //     setError("");
-      //   }, 2000);
-      // }
-      router.push(`${pathname}/submit-testcases`);
+      try {
+        setLoading(true);
+        const newQuestion = {
+          title,
+          description,
+          difficulty,
+        };
+        const {
+          data: { question },
+        } = await axios.post("/api/questions", newQuestion);
+        setLoading(false);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 2000);
+        router.push(`${pathname}/${question.title}/submit-testcases`);
+      } catch (error) {
+        setLoading(false);
+        setError(error.message);
+        setTimeout(() => {
+          setError("");
+        }, 2000);
+      }
     }
   };
   return (
