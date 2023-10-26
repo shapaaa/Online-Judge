@@ -18,18 +18,31 @@ const page = async ({ params: { slug } }) => {
   return (
     <div className=" mb-[20px] flex h-[950px] justify-between gap-[10px] bg-slate-100 p-[10px] ">
       <article className="prose flex w-full flex-col gap-y-[10px] overflow-y-scroll rounded bg-white p-[20px]">
-        <h1 className="mb-0 text-lg font-bold">{title}</h1>
-        <div className={` font-semibold ${colors[difficulty]}`}>
-          {difficulty}
-        </div>
-        {result.ok && (
-          <Link
-            className="mb-2 mr-2 w-fit rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300"
-            href={`/problems/${slug}/submissions`}
-          >
+        <h1 className="mb-0 text-xl font-semibold">{title}</h1>
+        <div className={` font-bold ${colors[difficulty]}`}>{difficulty}</div>
+        <Link
+          className="mb-2 mr-2 w-fit rounded-lg bg-blue-500 px-5 py-2.5 text-sm font-medium text-white no-underline hover:bg-blue-600  focus:outline-none focus:ring-4 focus:ring-blue-300"
+          href={`/problems/${slug}/submissions`}
+        >
+          <div className="flex items-center gap-2">
             My Submissions
-          </Link>
-        )}
+            <svg
+              class="h-4 w-4 text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M1 5h12m0 0L9 1m4 4L9 9"
+              />
+            </svg>
+          </div>
+        </Link>
         <div>
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
