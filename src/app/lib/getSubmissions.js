@@ -8,7 +8,7 @@ export async function getSubmissions(id) {
     await DBConnection();
     const result = await Submission.find({
       userId: user.name,
-      questionId: "New",
+      questionId: id,
     });
     return result;
   } catch (error) {

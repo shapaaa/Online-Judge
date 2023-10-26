@@ -14,7 +14,7 @@ const Table = ({ data, columns }) => {
   return (
     <div className="mt-[30px] flex justify-center  rounded">
       <table className="w-9/12 text-left text-sm text-gray-500">
-        <thead className="border-b bg-slate-50 text-xs uppercase text-gray-700">
+        <thead className="border-b  text-xs uppercase text-gray-700">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -33,12 +33,13 @@ const Table = ({ data, columns }) => {
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr className=" odd:bg-white even:bg-slate-100" key={row.id}>
+              <tr className=" odd:bg-white even:bg-slate-50" key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <td
                     className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                     key={cell.id}
                   >
+                    {/* {console.log(cell.id)} */}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

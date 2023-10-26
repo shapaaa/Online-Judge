@@ -7,16 +7,19 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const { questionId, language, program } = await request.json();
+  const id = questionId.toLowerCase().replaceAll(" ", "-");
   await DBConnection();
   const { user } = await getAuthenticatedUser();
-  const { testcases } = await TestCases.findOne({ questionId });
+  const { testcases } = await TestCases.findOne({
+    questionId: id,
+  });
   const inputs = testcases.map(({ input }) => input);
 
   let verdict = "",
     success = true;
   const submission = {
     userId: user.name,
-    questionId,
+    questionId: id,
     program,
     language,
   };

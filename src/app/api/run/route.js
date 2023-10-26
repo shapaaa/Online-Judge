@@ -8,7 +8,7 @@ export async function POST(request) {
   try {
     //you have to create folder programs if not there
     const data = await request.json();
-    const { language, program, inputs } = data;
+    const { language, program, inputs, timeLimit } = data;
     const dirPrograms = path.join(process.cwd(), "/src/app/programs");
     if (!fs.existsSync(dirPrograms)) {
       fs.mkdirSync(dirPrograms, { recursive: true });
@@ -19,10 +19,10 @@ export async function POST(request) {
     const filePath = path.join(dirPrograms, filename);
     fs.writeFileSync(filePath, program);
     //execute that file using child_process module
-    const result = await executeCpp(filePath, inputs);
+    const result = await executeCpp(filePath, inputs, timeLimit);
     return NextResponse.json({ result });
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: error.message });
+    const response = new NextResponse(error.message, { status: 500 });
+    return response;
   }
 }

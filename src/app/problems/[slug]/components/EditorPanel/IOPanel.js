@@ -3,6 +3,7 @@ import CustomInput from "./CustomInput";
 import { EditorContext } from "@/ContextProviders/EditorProvider";
 import Result from "./Result";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const IOPanel = ({ disable, questionId }) => {
   const [activeId, setActiveId] = useState(0);
@@ -10,6 +11,7 @@ const IOPanel = ({ disable, questionId }) => {
   const [verdict, setVerdict] = useState("");
   const [loading, setLoading] = useState(false);
   const { code, input, language } = useContext(EditorContext);
+  const router = useRouter();
 
   const handleClick = (e) => {
     setActiveId(e.target.id);
@@ -19,17 +21,17 @@ const IOPanel = ({ disable, questionId }) => {
     setActiveId(1);
     setLoading(true);
     try {
-      const {
-        data: { result },
-      } = await axios.post("/api/run", {
+      const response = await axios.post("/api/run", {
         program: code,
         inputs: [input],
         language,
       });
+      const {
+        data: { result },
+      } = response;
       setOutput(result[0]);
     } catch (error) {
-      console.log(error);
-      setOutput(error.message);
+      setOutput(error.response.data);
     }
     setLoading(false);
   };
@@ -49,6 +51,7 @@ const IOPanel = ({ disable, questionId }) => {
     } catch (error) {
       setVerdict(error.message);
     }
+    router.refresh();
     setLoading(false);
   };
 

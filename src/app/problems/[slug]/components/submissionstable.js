@@ -38,7 +38,7 @@ const SubmissionsTable = ({ submissions }) => {
       cell: (info) => (
         <button
           type="button"
-          class="mb-2 mr-2 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
+          class="mb-2 mr-2 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 "
           onClick={() => handleClick(info.getValue())}
         >
           {"</>"}
@@ -55,18 +55,16 @@ const SubmissionsTable = ({ submissions }) => {
           id="defaultModal"
           tabindex="-1"
           aria-hidden="true"
-          class="z-100 fixed left-0 right-0 top-0  h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0"
+          class="z-100 fixed left-0 right-0 top-0 overflow-y-auto overflow-x-hidden p-4 md:inset-0"
         >
-          <div class=" relative left-1/4 top-[10px]  max-h-full w-full max-w-2xl">
-            <div class="relative rounded-lg bg-white shadow-md shadow-gray-400 dark:bg-gray-700">
-              <div class="flex  items-start justify-between rounded-t  px-4 py-[10px] dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                  Code
-                </h3>
+          <div class=" relative left-[300px]  w-[800px]">
+            <div class="relative rounded-lg bg-white shadow-md shadow-gray-400 ">
+              <div class="flex  items-start justify-between rounded-t  px-4 py-[10px] ">
+                <h3 class="text-xl font-semibold text-gray-900 ">Code</h3>
                 <button
                   type="button"
                   onClick={handleClick}
-                  class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 "
                   data-modal-hide="defaultModal"
                 >
                   <svg
@@ -88,13 +86,13 @@ const SubmissionsTable = ({ submissions }) => {
                 </button>
               </div>
               <div class="px-[20px] py-[10px]">
-                <div className="h-[600px] overflow-y-scroll rounded-md border">
+                <div className="h-[710px] overflow-y-scroll rounded-md border">
                   <Editor
                     value={modalData}
                     disabled
                     highlight={(code) => highlight(code, languages.js)}
                     padding={10}
-                    className="min-h-[600px] "
+                    className="min-h-[710px] "
                     style={{
                       fontFamily: '"Fira code", "Fira Mono", monospace',
                       fontSize: 16,
