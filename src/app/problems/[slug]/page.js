@@ -22,12 +22,14 @@ const page = async ({ params: { slug } }) => {
         <div className={` font-semibold ${colors[difficulty]}`}>
           {difficulty}
         </div>
-        <Link
-          className="mb-2 mr-2 w-fit rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300"
-          href={`/problems/${slug}/submissions`}
-        >
-          My Submissions
-        </Link>
+        {result.ok && (
+          <Link
+            className="mb-2 mr-2 w-fit rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-blue-300"
+            href={`/problems/${slug}/submissions`}
+          >
+            My Submissions
+          </Link>
+        )}
         <div>
           <ReactMarkdown>{description}</ReactMarkdown>
         </div>
