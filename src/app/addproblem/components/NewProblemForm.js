@@ -6,20 +6,14 @@ import axios from "axios";
 import DropDown from "./DropDown";
 import { useRouter, usePathname } from "next/navigation";
 import { useContext } from "react";
-import { ProblemContext } from "@/ContextProviders/ProblemProvider";
 
 const NewProblemForm = (props) => {
-  const {
-    description,
-    setDescription,
-    difficulty,
-    setDifficulty,
-    title,
-    setTitle,
-  } = useContext(ProblemContext);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [description, setDescription] = useState("");
+  const [difficulty, setDifficulty] = useState("Easy");
+  const [title, setTitle] = useState();
   const pathname = usePathname();
   const router = useRouter();
   const handleEditorChange = ({ html, text }) => {
@@ -65,18 +59,46 @@ const NewProblemForm = (props) => {
   };
   return (
     <div className="flex flex-col gap-y-[20px] p-[20px]">
-      <input
-        onChange={handleTitle}
-        value={title}
-        type="title"
-        name="title"
-        id="title"
-        className="focus:ring-primary-600 focus:border-primary-600  w-3/12 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
-        placeholder="Enter Problem Title"
-        required
+      <h2
+        htmlFor="message"
+        className="mb-2 block self-start text-lg font-extrabold text-gray-900 "
+      >
+        Add New Problem
+      </h2>
+      <div>
+        <label
+          htmlFor="title"
+          className="mb-2 block text-sm font-medium text-gray-900 "
+        >
+          Title
+        </label>
+        <input
+          onChange={handleTitle}
+          value={title}
+          type="title"
+          name="title"
+          id="title"
+          className="focus:ring-primary-600 focus:border-primary-600  w-3/12 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
+          placeholder="Enter Problem Title"
+          required
+        />
+      </div>
+      <DropDown
+        label="Select difficulty level"
+        value={difficulty}
+        id="difficulty"
+        handleChange={handleDifficulty}
+        options={["Easy", "Medium", "Hard"]}
       />
-      <DropDown difficulty={difficulty} handleDifficulty={handleDifficulty} />
-      <TextEditor handleEditorChange={handleEditorChange} />
+      <div>
+        <label
+          htmlFor="description"
+          className="mb-2 block text-sm font-medium text-gray-900 "
+        >
+          Description
+        </label>
+        <TextEditor handleEditorChange={handleEditorChange} />
+      </div>
       <button
         onClick={handleSubmit}
         type="button"

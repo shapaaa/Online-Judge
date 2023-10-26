@@ -1,12 +1,12 @@
 "use client";
-import { ProblemContext } from "@/ContextProviders/ProblemProvider";
 import axios from "axios";
-import { useContext } from "react";
 import { useState } from "react";
+import DropDown from "../../components/DropDown";
 
 const SubmitTestCases = ({ params }) => {
   const { questionid } = params;
   const [testCasesInput, setTestCasesInput] = useState("");
+  const [time, setTime] = useState(1);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -22,6 +22,7 @@ const SubmitTestCases = ({ params }) => {
     const payload = {
       questionId: questionid,
       testcases,
+      time,
     };
     try {
       setLoading(true);
@@ -39,14 +40,24 @@ const SubmitTestCases = ({ params }) => {
       }, 2000);
     }
   };
+  const handleTime = (e) => {
+    setTime(e.target.value);
+  };
   return (
-    <div className="mx-auto mb-[20px] flex  w-9/12  flex-col items-center gap-y-[10px]">
+    <div className="mx-auto my-[20px] flex  w-9/12  flex-col items-center gap-y-[20px]">
       <label
         htmlFor="message"
-        className="mb-2 block self-start text-sm font-medium text-gray-900 "
+        className="mb-2 block self-start text-lg font-extrabold text-gray-900 "
       >
         Add TestCases
       </label>
+      <DropDown
+        id="time"
+        value={time}
+        handleChange={handleTime}
+        label="Select time limit"
+        options={[1, 2, 3, 4, 5, 6]}
+      />
       <textarea
         value={testCasesInput}
         onChange={handleChange}
