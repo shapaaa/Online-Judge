@@ -39,7 +39,6 @@ const Table = ({ data, columns }) => {
                     className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                     key={cell.id}
                   >
-                    {/* {console.log(cell.id)} */}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

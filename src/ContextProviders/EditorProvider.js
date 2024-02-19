@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const EditorContext = createContext();
 const EditorProvider = ({ children }) => {
-  const [language, setLanguage] = useState("C++");
+  const [language, setLanguage] = useState("cpp");
   const [code, setCode] = useState("");
   const [input, setInput] = useState("");
 

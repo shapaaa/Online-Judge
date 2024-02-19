@@ -33,7 +33,6 @@ export async function POST(request) {
     });
     return response;
   } catch (error) {
-    console.log(error.message);
     return NextResponse.error(error.message);
   }
 }

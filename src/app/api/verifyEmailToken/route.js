@@ -16,7 +16,6 @@ export async function POST(req) {
     );
     return NextResponse.json("Success 🎉");
   } catch (error) {
-    console.log(error.message);
     return NextResponse.json("Error ");
   }
 }

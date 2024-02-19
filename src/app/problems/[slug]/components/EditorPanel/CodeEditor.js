@@ -6,7 +6,7 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css"; //Example style, you can use another
 import { EditorContext } from "@/ContextProviders/EditorProvider";
 const intitalCodes = {
-  "C++": `#include <iostream>
+  cpp: `#include <iostream>
     using namespace std;
   
   int main() 
@@ -14,17 +14,18 @@ const intitalCodes = {
       cout << "Hello, World!";
       return 0;
   }`,
-  Java: `import java.util.*;
+  java: `import java.util.*;
 
   public class Main {
       public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
   }`,
-  Python: `print("Hello, World!")`,
+  py: `print("Hello, World!")`,
 };
 const CodeEditor = ({ questionId }) => {
   const { language, code, setCode } = useContext(EditorContext);
+  console.log(code);
   useEffect(() => {
     if (!localStorage.getItem(questionId)) setCode(intitalCodes[language]);
   }, [language]);
