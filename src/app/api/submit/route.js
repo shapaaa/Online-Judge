@@ -6,7 +6,7 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { questionId, language, program } = await request.json();
+  const { questionId, language, program, timeLimit } = await request.json();
   const id = questionId.toLowerCase().replaceAll(" ", "-");
   await DBConnection();
   const { user } = await getAuthenticatedUser();
@@ -28,6 +28,7 @@ export async function POST(request) {
       inputs,
       language,
       program,
+      timeLimit,
     });
     const { result: outputs } = data;
     for (let i = 0; i < outputs.length; i++) {
@@ -39,7 +40,7 @@ export async function POST(request) {
     }
     if (success) verdict = `Success:Passed All TestCases 🎉`;
   } catch (error) {
-    verdict = "Runtime Error";
+    verdict = error.response.data;
     success = false;
   } finally {
     await Submission.create({ ...submission, verdict });

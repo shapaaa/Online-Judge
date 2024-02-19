@@ -16,6 +16,10 @@ const QuestionSchema = mongoose.Schema({
     required: true,
   },
   createdat: { type: Date, default: Date.now() },
+  timeLimit: {
+    type: Number,
+    required: true,
+  },
 });
 const Question =
   mongoose.models.question || mongoose.model("question", QuestionSchema);

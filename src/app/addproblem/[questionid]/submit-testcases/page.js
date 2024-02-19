@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 const SubmitTestCases = ({ params }) => {
   const { questionid } = params;
   const [testCasesInput, setTestCasesInput] = useState("");
-  const [time, setTime] = useState(1);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -24,7 +23,6 @@ const SubmitTestCases = ({ params }) => {
     const payload = {
       questionId: questionid,
       testcases,
-      timeLimit: time,
     };
     try {
       setLoading(true);
@@ -38,9 +36,6 @@ const SubmitTestCases = ({ params }) => {
         setError("");
       }, 2000);
     }
-  };
-  const handleTime = (e) => {
-    setTime(e.target.value);
   };
   return (
     <>
@@ -58,13 +53,6 @@ const SubmitTestCases = ({ params }) => {
             >
               Add TestCases
             </label>
-            <DropDown
-              id="time"
-              value={time}
-              handleChange={handleTime}
-              label="Select time limit"
-              options={[1, 2, 3, 4, 5, 6]}
-            />
             <textarea
               value={testCasesInput}
               onChange={handleChange}

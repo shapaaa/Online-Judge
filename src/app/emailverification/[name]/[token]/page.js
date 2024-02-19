@@ -1,17 +1,18 @@
-'use client';
-import axios from 'axios';
-import { useEffect } from 'react';
+"use client";
+import axios from "axios";
+import { useEffect } from "react";
 export default function verifyUserEmail({ params: userInfo }) {
-	useEffect(() => {
-		const verifyEmailToken = async () => {
-			try {
-				const res = await axios.post('/api/verifyEmailToken', userInfo);
-				console.log(res);
-			} catch (error) {
-				console.log(error.message);
-			}
-		};
-		verifyEmailToken();
-	}, []);
-	return <div>Verify</div>;
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    const verifyEmailToken = async () => {
+      try {
+        const res = await axios.post("/api/verifyEmailToken", userInfo);
+        setMessage("Verified");
+      } catch (error) {
+        setMessage(error.message);
+      }
+    };
+    verifyEmailToken();
+  }, []);
+  return <div>{message}</div>;
 }

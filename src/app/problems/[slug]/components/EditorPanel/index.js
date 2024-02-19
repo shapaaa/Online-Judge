@@ -5,7 +5,7 @@ import DropDown from "./DropDown";
 import EditorProvider from "@/ContextProviders/EditorProvider";
 import Link from "next/link";
 
-const EditorPanel = ({ questionId, result }) => {
+const EditorPanel = ({ questionId, result, timeLimit }) => {
   return (
     <EditorProvider>
       <div className="flex w-full flex-col gap-y-[10px] rounded bg-white p-[20px]">
@@ -41,6 +41,7 @@ const EditorPanel = ({ questionId, result }) => {
           )}
         </>
         <IOPanel
+          timeLimit={timeLimit}
           disable={result.ok ? !result.user.verified : !result.ok}
           questionId={questionId}
         />

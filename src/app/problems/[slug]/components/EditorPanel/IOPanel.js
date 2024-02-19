@@ -5,18 +5,16 @@ import Result from "./Result";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const IOPanel = ({ disable, questionId }) => {
+const IOPanel = ({ disable, questionId, timeLimit }) => {
   const [activeId, setActiveId] = useState(0);
   const [output, setOutput] = useState("");
   const [verdict, setVerdict] = useState("");
   const [loading, setLoading] = useState(false);
   const { code, input, language } = useContext(EditorContext);
   const router = useRouter();
-
   const handleClick = (e) => {
     setActiveId(e.target.id);
   };
-
   const handleRun = async () => {
     setActiveId(1);
     setLoading(true);
@@ -25,6 +23,7 @@ const IOPanel = ({ disable, questionId }) => {
         program: code,
         inputs: [input],
         language,
+        timeLimit,
       });
       const {
         data: { result },
@@ -46,6 +45,7 @@ const IOPanel = ({ disable, questionId }) => {
         program: code,
         language,
         questionId,
+        timeLimit,
       });
       setVerdict(verdict);
     } catch (error) {

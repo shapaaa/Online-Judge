@@ -5,7 +5,6 @@ import TextEditor from "./TextEditor";
 import axios from "axios";
 import DropDown from "./DropDown";
 import { useRouter, usePathname } from "next/navigation";
-import { useContext } from "react";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 
 const NewProblemForm = (props) => {
@@ -16,6 +15,8 @@ const NewProblemForm = (props) => {
   const [title, setTitle] = useState();
   const pathname = usePathname();
   const router = useRouter();
+  const [time, setTime] = useState(1);
+
   const handleEditorChange = ({ html, text }) => {
     setDescription(text);
   };
@@ -38,7 +39,9 @@ const NewProblemForm = (props) => {
           title,
           description,
           difficulty,
+          timeLimit: time,
         };
+
         const {
           data: { question },
         } = await axios.post("/api/questions", newQuestion);
@@ -57,6 +60,9 @@ const NewProblemForm = (props) => {
         }, 2000);
       }
     }
+  };
+  const handleTime = (e) => {
+    setTime(e.target.value);
   };
   return (
     <>
@@ -98,6 +104,13 @@ const NewProblemForm = (props) => {
               id="difficulty"
               handleChange={handleDifficulty}
               options={["Easy", "Medium", "Hard"]}
+            />
+            <DropDown
+              id="time"
+              value={time}
+              handleChange={handleTime}
+              label="Select time limit"
+              options={[1, 2, 3, 4, 5, 6]}
             />
             <div>
               <label

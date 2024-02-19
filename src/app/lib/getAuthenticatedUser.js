@@ -7,6 +7,7 @@ const getAuthenticatedUser = async () => {
     const { value: token } = cookies().get("jwt");
     const { email } = await verifyJwt(token);
     const user = await User.findOne({ email });
+    if (!user) throw Error("No user exists with that email");
     return { ok: true, user };
   } catch (error) {
     return { ok: false, error: error.message };

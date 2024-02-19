@@ -16,10 +16,6 @@ const TestCasesSchema = mongoose.Schema({
     required: true,
   },
   testcases: [TestCaseSchema],
-  timeLimit: {
-    type: Number,
-    required: true,
-  },
 });
 const TestCases =
   mongoose.models.testcases || mongoose.model("testcases", TestCasesSchema);
