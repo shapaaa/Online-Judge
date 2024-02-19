@@ -3,7 +3,8 @@ import NewProblemForm from "./components/NewProblemForm";
 import { redirect } from "next/navigation";
 const NewProblem = async () => {
   const result = await getAuthenticatedUser();
-  if (!result.ok) redirect("/");
+
+  if (!result.ok || !result.user.verified) redirect("/");
   return <NewProblemForm />;
 };
 
