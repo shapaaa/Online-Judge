@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect } from "react";
-export default function verifyUserEmail({ params: userInfo }) {
+export default function EmailVerificationPage({ params: userInfo }) {
   const [message, setMessage] = useState("");
   useEffect(() => {
     const verifyEmailToken = async () => {
